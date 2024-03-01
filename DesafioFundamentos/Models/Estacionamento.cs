@@ -28,6 +28,8 @@ namespace DesafioFundamentos.Models
 
                 veiculos.Add(placa);
 
+                Console.WriteLine($"Veículo {placa} adicionado!");
+
                 break;
             }
         }
@@ -78,12 +80,14 @@ namespace DesafioFundamentos.Models
 
         public void ListarVeiculos()
         {
-            // Verifica se há veículos no estacionamento
             if (veiculos.Any())
             {
                 Console.WriteLine("Os veículos estacionados são:");
-                // TODO: Realizar um laço de repetição, exibindo os veículos estacionados
-                // *IMPLEMENTE AQUI*
+
+                foreach (var placa in veiculos)
+                {
+                    Console.WriteLine(placa);
+                }
             }
             else
             {
@@ -96,10 +100,9 @@ namespace DesafioFundamentos.Models
             return veiculos.FindIndex(placaVeiculoEstacionado => placaVeiculoEstacionado.ToUpper() == placa.ToUpper());
         }
 
-        private double ObterPrecoTotal(int horasEstacionado)
+        private decimal ObterPrecoTotal(int horasEstacionado)
         {
             return (horasEstacionado * precoPorHora) + precoInicial;
         }
-
     }
 }
