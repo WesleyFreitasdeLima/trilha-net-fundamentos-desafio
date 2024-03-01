@@ -12,15 +12,33 @@ namespace DesafioFundamentos.Models
             this.precoPorHora = precoPorHora;
         }
 
+        public void DefinirPrecoInicial()
+        {
+            while (true)
+            {
+                Console.WriteLine("Digite o preço inicial:");
+
+                string precoInicialStr = Console.ReadLine().Trim();
+
+                if (!(decimal.TryParse(precoInicialStr, out precoInicial) && this.precoInicial > 0))
+                {
+                    Console.WriteLine("Valor inicial inválido! Tente novamente.");
+                    continue;
+                }
+
+                break;
+            }
+        }
+
         public void AdicionarVeiculo()
         {
             while (true)
             {
                 Console.WriteLine("Digite a placa do veículo para estacionar:");
 
-                string? placa = Console.ReadLine()?.Trim();
+                string placa = Console.ReadLine().Trim();
 
-                if (!string.IsNullOrEmpty(placa))
+                if (string.IsNullOrEmpty(placa))
                 {
                     Console.WriteLine("Placa inválida! Tente novamente.");
                     continue;
@@ -40,7 +58,7 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Digite a placa do veículo para remover:");
 
-                string? placa = Console.ReadLine()?.Trim();
+                string placa = Console.ReadLine().Trim();
 
                 if (string.IsNullOrEmpty(placa))
                 {
@@ -72,7 +90,7 @@ namespace DesafioFundamentos.Models
 
                 veiculos.RemoveAt(veiculoIndex);
 
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal}");
+                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal:C2}");
 
                 break;
             }
