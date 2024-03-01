@@ -3,16 +3,10 @@
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-decimal precoInicial = 0;
-decimal precoPorHora = 0;
-
-Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
-
-Console.WriteLine("Seja bem vindo ao sistema de estacionamento!");
+Estacionamento es = new Estacionamento("DIO");
+es.BoasVindas();
 es.DefinirPrecoInicial();
-
-Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+es.DefinirPrecoPorHora();
 
 string opcao = string.Empty;
 bool exibirMenu = true;

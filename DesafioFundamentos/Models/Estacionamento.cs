@@ -2,14 +2,19 @@ namespace DesafioFundamentos.Models
 {
     public class Estacionamento
     {
+        private string nomeEstacionamento = "";
         private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
         private List<string> veiculos = new List<string>();
 
-        public Estacionamento(decimal precoInicial, decimal precoPorHora)
+        public Estacionamento(string nomeEstacionamento)
         {
-            this.precoInicial = precoInicial;
-            this.precoPorHora = precoPorHora;
+            this.nomeEstacionamento = nomeEstacionamento;
+        }
+
+        public void BoasVindas()
+        {
+            Console.WriteLine($"Seja bem vindo ao sistema do estacionamento {this.nomeEstacionamento}!");
         }
 
         public void DefinirPrecoInicial()
@@ -23,6 +28,24 @@ namespace DesafioFundamentos.Models
                 if (!(decimal.TryParse(precoInicialStr, out precoInicial) && this.precoInicial > 0))
                 {
                     Console.WriteLine("Valor inicial inválido! Tente novamente.");
+                    continue;
+                }
+
+                break;
+            }
+        }
+
+        public void DefinirPrecoPorHora()
+        {
+            while (true)
+            {
+                Console.WriteLine("Digite o preço da hora:");
+
+                string valorHoraStr = Console.ReadLine().Trim();
+
+                if (!(decimal.TryParse(valorHoraStr, out precoPorHora) && precoPorHora > 0))
+                {
+                    Console.WriteLine("Valor da hora inválido! Tente novamente.");
                     continue;
                 }
 
@@ -90,7 +113,7 @@ namespace DesafioFundamentos.Models
 
                 veiculos.RemoveAt(veiculoIndex);
 
-                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: R$ {valorTotal:C2}");
+                Console.WriteLine($"O veículo {placa} foi removido e o preço total foi de: {valorTotal:C2}");
 
                 break;
             }
